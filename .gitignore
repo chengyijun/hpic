@@ -1,0 +1,6 @@
+.idea/
+__pycache__/
+
+*.json
+imgs/
+test.py
