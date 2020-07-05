@@ -8,7 +8,6 @@
 #     https://docs.scrapy.org/en/latest/topics/settings.html
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
-import os
 
 BOT_NAME = 'mypro'
 
@@ -68,8 +67,9 @@ DOWNLOADER_MIDDLEWARES = {
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    'mypro.pipelines.BoDuoImagePipeline': 300,
+    # 'mypro.pipelines.BoDuoImagePipeline': 300,
     # 'mypro.pipelines.BjdyPipeline': 300,
+    'mypro.pipelines.DmpPipeline': 300,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -94,4 +94,4 @@ ITEM_PIPELINES = {
 # HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
 # 配置图片保存位置
-IMAGES_STORE = os.path.join(os.getcwd(), 'imgs')
+IMAGES_STORE = 'images/'

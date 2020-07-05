@@ -7,7 +7,7 @@ from mypro.items import MyproItem
 class BojieSpider(scrapy.Spider):
     name = 'bojie'
     # allowed_domains = ['www.bvn2.com']
-    target_url = 'https://www.qve3.com/tupian/list-%E4%BA%9A%E6%B4%B2%E5%9B%BE%E7%89%87.html'
+    target_url = 'https://bhk5.com/tupian/list-%E4%BA%9A%E6%B4%B2%E5%9B%BE%E7%89%87.html'
     base_url = target_url.split("/tupian")[0]
     start_urls = [target_url]
 
@@ -33,11 +33,11 @@ class BojieSpider(scrapy.Spider):
             title = lia.xpath('./@title').get()
             # if ('波多' not in title) and ('波姐' not in title):
             # if '蕾丝兔宝宝' not in title:
-            # if '黑丝' not in title:
-            # if all(['波多' not in title, '波姐' not in title]):
-            # if '女仆' not in title:
-            # if '无码' not in title:
-            if '学生' not in title:
+            if '黑丝' not in title:
+                # if all(['波多' not in title, '波姐' not in title]):
+                # if '女仆' not in title:
+                # if '无码' not in title:
+                # if '学生' not in title:
                 # if '援交' not in title:
                 continue
             detail_url = self.base_url + lia.xpath('./@href').get()

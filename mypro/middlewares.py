@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
 
+import os
 # Define here the models for your spider middleware
 #
 # See documentation in:
 # https://docs.scrapy.org/en/latest/topics/spider-middleware.html
-import random
 import time
+from os.path import join
 
+from fake_useragent import UserAgent
 from scrapy import signals
 from scrapy.http import HtmlResponse
 
@@ -107,17 +109,12 @@ class MyproDownloaderMiddleware(object):
 
 
 class RandomUserAgentMiddleware:
-    USER_AGENT = [
-        'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/14.0.835.163 Safari/535.1',
-        'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:6.0) Gecko/20100101 Firefox/6.0',
-        'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/534.50 (KHTML, like Gecko) Version/5.1 Safari/534.50',
-        'Opera/9.80 (Windows NT 6.1; U; zh-cn) Presto/2.9.168 Version/11.50',
-        'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident/5.0; .NET CLR 2.0.50727; SLCC2; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; InfoPath.3; .NET4.0C; Tablet PC 2.0; .NET4.0E)',
-    ]
 
     def process_request(self, request, spider):
+        json_path = join(os.getcwd(), 'fake_useragent.json')
+        ua = UserAgent(path=json_path)
         # 发送request进行下载请求时 此方法会被自动调用  附加随机请求头
-        request.headers['User-Agent'] = random.choice(self.USER_AGENT)
+        request.headers['User-Agent'] = ua.random
 
 
 class JSPageExecMiddleware:

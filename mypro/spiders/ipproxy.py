@@ -4,7 +4,7 @@ import scrapy
 # from scrapy.xlib.pydispatch import dispatcher
 from pydispatch import dispatcher
 from scrapy import signals
-from selenium import webdriver
+# from selenium import webdriver
 
 
 class IpproxySpider(scrapy.Spider):

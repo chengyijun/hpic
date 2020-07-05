@@ -8,6 +8,13 @@
 import scrapy
 
 
+class DmpItem(scrapy.Item):
+    title = scrapy.Field()
+    url = scrapy.Field()
+    content = scrapy.Field()
+    index = scrapy.Field()
+
+
 class BjdyItem(scrapy.Item):
     # define the fields for your item here like:
     dname = scrapy.Field()

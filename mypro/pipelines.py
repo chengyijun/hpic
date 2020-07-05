@@ -9,7 +9,9 @@ import os
 import scrapy
 from scrapy.exporters import JsonLinesItemExporter
 from scrapy.pipelines.images import ImagesPipeline
+
 from mypro.settings import IMAGES_STORE
+from tools import get_config
 
 
 class BoDuoImagePipeline(ImagesPipeline):
@@ -52,3 +54,26 @@ class BjdyPipeline(object):
     def close_spider(self, spider):
         self.fp.write(b"]")
         pass
+
+
+class DmpPipeline(object):
+    def __init__(self):
+        import pymongo
+
+        config = get_config()
+        name = config.get('fiction').get('name')
+        self.myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+        self.mydb = self.myclient["fcitions"]
+        self.mycol = self.mydb[name]
+
+    def open_spider(self, spider):
+        pass
+
+    def process_item(self, item, spider):
+        x = self.mycol.insert_one(dict(item))
+        return item
+
+    def close_spider(self, spider):
+        self.myclient.close()
+        print('*' * 50)
+        print('数据已经存入mongodb')
