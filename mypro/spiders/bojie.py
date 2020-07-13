@@ -2,12 +2,14 @@
 import scrapy
 
 from mypro.items import MyproItem
+from mypro.tools import get_config
 
 
 class BojieSpider(scrapy.Spider):
     name = 'bojie'
     # allowed_domains = ['www.bvn2.com']
-    target_url = 'https://bhk5.com/tupian/list-%E4%BA%9A%E6%B4%B2%E5%9B%BE%E7%89%87.html'
+    config = get_config()
+    target_url = config.get('bojie').get('url')
     base_url = target_url.split("/tupian")[0]
     start_urls = [target_url]
 
@@ -33,12 +35,7 @@ class BojieSpider(scrapy.Spider):
             title = lia.xpath('./@title').get()
             # if ('波多' not in title) and ('波姐' not in title):
             # if '蕾丝兔宝宝' not in title:
-            if '黑丝' not in title:
-                # if all(['波多' not in title, '波姐' not in title]):
-                # if '女仆' not in title:
-                # if '无码' not in title:
-                # if '学生' not in title:
-                # if '援交' not in title:
+            if not self.is_keywords_in_title(title):
                 continue
             detail_url = self.base_url + lia.xpath('./@href').get()
 
@@ -55,3 +52,12 @@ class BojieSpider(scrapy.Spider):
                 break
             next_page_url = self.get_next_url(i)
             yield scrapy.Request(url=next_page_url, callback=self.parse)
+
+    def is_keywords_in_title(self, title):
+        flag = False
+        keywords = self.config.get('bojie').get('keywords')
+        for keyword in keywords:
+            if keyword in title:
+                flag = True
+                break
+        return flag

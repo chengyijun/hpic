@@ -4,7 +4,7 @@ import yaml
 
 
 def get_config():
-    yaml_file = os.path.join('/home/abel/PycharmProjects/hpic/', "config.yml")
+    yaml_file = os.path.join(os.getcwd(), "config.yml")
     file = open(yaml_file, 'r', encoding="utf-8")
     file_data = file.read()
     file.close()

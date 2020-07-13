@@ -111,7 +111,7 @@ class MyproDownloaderMiddleware(object):
 class RandomUserAgentMiddleware:
 
     def process_request(self, request, spider):
-        json_path = join(os.getcwd(), 'fake_useragent.json')
+        json_path = join(os.getcwd(), 'useragent.json')
         ua = UserAgent(path=json_path)
         # 发送request进行下载请求时 此方法会被自动调用  附加随机请求头
         request.headers['User-Agent'] = ua.random

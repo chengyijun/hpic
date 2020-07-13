@@ -11,7 +11,7 @@ from scrapy.exporters import JsonLinesItemExporter
 from scrapy.pipelines.images import ImagesPipeline
 
 from mypro.settings import IMAGES_STORE
-from tools import get_config
+from mypro.tools import get_config
 
 
 class BoDuoImagePipeline(ImagesPipeline):

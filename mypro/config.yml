@@ -1,0 +1,14 @@
+# 小说参数配置
+fiction:
+  url: https://qxs.la/136968/
+  name: 'mygs'
+
+# 图片
+bojie:
+  url: https://www.bnt4.com/tupian/list-%E4%BA%9A%E6%B4%B2%E5%9B%BE%E7%89%87.html
+  keywords: ['拘','束','捆','绑','缚','sm','SM']
+
+# 电影
+bjdy:
+  url: https://www.bnt4.com/shipin/list-%E5%8F%98%E6%80%81%E5%8F%A6%E7%B1%BB.html
+  keywords: ['拘','束','捆','绑','缚','sm','SM']
